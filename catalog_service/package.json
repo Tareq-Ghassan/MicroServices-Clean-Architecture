@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/server.ts",
+    "jest:init": "jest --init",
     "start": "node dist/server.js",
-    "build": "npm install && tsc -p ."
+    "build": "npm install && tsc -p .",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
