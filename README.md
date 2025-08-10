@@ -79,7 +79,7 @@ A product catalog microservice that demonstrates:
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Tareq-Ghassan/MicroServices-Clean-Architecture.git
    cd MicroService
    ```
 
