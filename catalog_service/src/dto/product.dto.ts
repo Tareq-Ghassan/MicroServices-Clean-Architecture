@@ -1,0 +1,16 @@
+// Product DTOs for API requests and responses
+
+import { IsNotEmpty, IsNumber, IsString, Min } from "class-validator";
+
+export class CreateProductDto {
+    @IsString()
+    @IsNotEmpty()
+    name: string;
+    @IsString()
+    description: string;
+    @IsNumber()
+    @Min(1)
+    price: number;
+    @IsNumber()
+    stock: number;
+}

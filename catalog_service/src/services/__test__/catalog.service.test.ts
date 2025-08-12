@@ -4,14 +4,7 @@ import { MockCatalogRepository } from '../../repository/mockCatalog.repository';
 import { CatalogService } from '../catalog.service';
 import { faker } from '@faker-js/faker'
 import { Product } from '../../models/products.model';
-import { Factory } from 'rosie'
-
-const prodcutFactory = new Factory<Product>()
-    .attr("id", faker.number.int({ min: 10, max: 50 }))
-    .attr("name", faker.commerce.productName())
-    .attr("description", faker.commerce.productDescription())
-    .attr("stock", faker.number.int({ min: 10, max: 100 }))
-    .attr("price", +faker.commerce.price())
+import { ProductFactory } from '../../utils/fixture';
 
 
 
@@ -65,8 +58,8 @@ describe("catalog service", () => {
             const req = mockProduct({
                 price: +faker.commerce.price(),
             })
-            jest.spyOn(repo, 'create').mockImplementationOnce(() => Promise.reject(new Error("product already exsit")))
-            await expect(service.createProduct(req)).rejects.toThrow("product already exsit")
+            jest.spyOn(repo, 'create').mockImplementationOnce(() => Promise.reject(new Error("product already exist")))
+            await expect(service.createProduct(req)).rejects.toThrow("product already exist")
         })
     })
     describe('updateProduct', () => {
@@ -80,15 +73,15 @@ describe("catalog service", () => {
         })
 
         test("should throw error when product doesn't exist", async () => {
-            jest.spyOn(repo, 'update').mockImplementationOnce(() => Promise.reject(new Error("product doesn't exsit")))
-            await expect(service.updateProduct({})).rejects.toThrow("product doesn't exsit")
+            jest.spyOn(repo, 'update').mockImplementationOnce(() => Promise.reject(new Error("product doesn't exist")))
+            await expect(service.updateProduct({})).rejects.toThrow("product doesn't exist")
         })
     })
 
     describe('getProducts', () => {
         test('should get products by offset and limit', async () => {
             const randomLimit = faker.number.int({ min: 10, max: 50 })
-            const products = prodcutFactory.buildList(randomLimit)
+            const products = ProductFactory.buildList(randomLimit)
             jest.spyOn(repo, 'find').mockImplementationOnce(() => Promise.resolve(products))
 
             const result = await service.getProducts(randomLimit, 0)
@@ -98,14 +91,14 @@ describe("catalog service", () => {
         })
 
         test("should throw error when products doesn't exist", async () => {
-            jest.spyOn(repo, 'find').mockImplementationOnce(() => Promise.reject(new Error("products doesn't exsit")))
-            await expect(service.getProducts(0, 0)).rejects.toThrow("products doesn't exsit")
+            jest.spyOn(repo, 'find').mockImplementationOnce(() => Promise.reject(new Error("products doesn't exist")))
+            await expect(service.getProducts(0, 0)).rejects.toThrow("products doesn't exist")
         })
     })
 
     describe('getProduct', () => {
         test('should get product by id', async () => {
-            const product = prodcutFactory.build()
+            const product = ProductFactory.build()
             jest.spyOn(repo, 'findOne').mockImplementationOnce(() => Promise.resolve(product))
 
             const result = await service.getProduct(product.id!)
@@ -114,15 +107,15 @@ describe("catalog service", () => {
         })
 
         test("should throw error when product doesn't exist", async () => {
-            const product = prodcutFactory.build()
-            jest.spyOn(repo, 'findOne').mockImplementationOnce(() => Promise.reject(new Error("product doesn't exsit")))
-            await expect(service.getProduct(product.id!)).rejects.toThrow("product doesn't exsit")
+            const product = ProductFactory.build()
+            jest.spyOn(repo, 'findOne').mockImplementationOnce(() => Promise.reject(new Error("product doesn't exist")))
+            await expect(service.getProduct(product.id!)).rejects.toThrow("product doesn't exist")
         })
     })
 
     describe('deleteProduct', () => {
         test('should delete product by id', async () => {
-            const product = prodcutFactory.build()
+            const product = ProductFactory.build()
             jest.spyOn(repo, 'delete').mockImplementationOnce(() => Promise.resolve({ id: product.id }))
 
             const result = await service.deleteProduct(product.id!)
@@ -133,9 +126,9 @@ describe("catalog service", () => {
         })
 
         test("should throw error when product doesn't exist", async () => {
-            const product = prodcutFactory.build()
-            jest.spyOn(repo, 'delete').mockImplementationOnce(() => Promise.reject(new Error("product doesn't exsit")))
-            await expect(service.deleteProduct(product.id!)).rejects.toThrow("product doesn't exsit")
+            const product = ProductFactory.build()
+            jest.spyOn(repo, 'delete').mockImplementationOnce(() => Promise.reject(new Error("product doesn't exist")))
+            await expect(service.deleteProduct(product.id!)).rejects.toThrow("product doesn't exist")
         })
     })
 })

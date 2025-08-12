@@ -16,7 +16,11 @@
   "type": "commonjs",
   "dependencies": {
     "@types/express": "^5.0.3",
-    "express": "^5.1.0"
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "express": "^5.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.9.0",
@@ -28,8 +32,6 @@
     "nodemon": "^3.1.10",
     "rosie": "^2.1.1",
     "supertest": "^7.1.4",
-    "ts-jest": "^29.4.1",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
+    "ts-jest": "^29.4.1"
   }
 }
