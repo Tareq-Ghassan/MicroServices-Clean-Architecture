@@ -2,20 +2,31 @@ import { ICatalogRepository } from "../interface/catalogRepository.interface";
 import { Product } from "../models/products.model";
 
 export class CatalogRepository implements ICatalogRepository {
+    private products: Product[] = [];
+
     create(data: Product): Promise<Product> {
-        throw new Error("Method not implemented.");
+        this.products.push(data);
+        return Promise.resolve(data);
     }
     update(data: Product): Promise<Product> {
-        throw new Error("Method not implemented.");
+        const index = this.products.findIndex(p => p.id === data.id);
+        if (index !== -1) {
+            this.products[index] = data;
+        }
+        return Promise.resolve(data);
     }
     delete(id: any): void {
-        throw new Error("Method not implemented.");
+        this.products = this.products.filter(p => p.id !== id);
     }
     find(): Promise<Product[]> {
-        throw new Error("Method not implemented.");
+        return Promise.resolve([...this.products]);
     }
     findOne(id: number): Promise<Product> {
-        throw new Error("Method not implemented.");
+        const product = this.products.find(p => p.id === id);
+        if (!product) {
+            throw new Error('Product not found');
+        }
+        return Promise.resolve(product);
     }
 
 }
