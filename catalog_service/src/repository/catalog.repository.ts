@@ -1,31 +1,26 @@
 import { ICatalogRepository } from "../interface/catalogRepository.interface";
 import { Product } from "../models/products.model";
+import { ProductFactory } from "../utils/fixture";
 
 export class CatalogRepository implements ICatalogRepository {
-    private products: Product[] = [];
 
-    create(data: Product): Promise<Product> {
-        this.products.push(data);
-        return Promise.resolve(data);
+    async create(data: Product): Promise<Product> {
+        const product = ProductFactory.build()
+        return Promise.resolve(product);
     }
-    update(data: Product): Promise<Product> {
-        const index = this.products.findIndex(p => p.id === data.id);
-        if (index !== -1) {
-            this.products[index] = data;
-        }
-        return Promise.resolve(data);
+    async update(data: Product): Promise<Product> {
+        const product = ProductFactory.build()
+        return Promise.resolve(product);
     }
-    delete(id: any): void {
-        this.products = this.products.filter(p => p.id !== id);
+    async delete(id: any): Promise<void> {
+        return Promise.resolve();
     }
-    find(): Promise<Product[]> {
-        return Promise.resolve([...this.products]);
+    async find(limit: number, offset: number): Promise<Product[]> {
+        const product = ProductFactory.buildList(limit)
+        return Promise.resolve(product);
     }
     findOne(id: number): Promise<Product> {
-        const product = this.products.find(p => p.id === id);
-        if (!product) {
-            throw new Error('Product not found');
-        }
+        const product = ProductFactory.build()
         return Promise.resolve(product);
     }
 
