@@ -1,9 +1,29 @@
-POST http://localhost:3000/product
+# POST http://localhost:3000/product
+# Content-Type: application/json
+
+# {
+#     "name":"hello",
+#     "description":"test",
+#     "price":10,
+#     "stock":12
+# }
+
+
+GET http://localhost:3000/products?limit=10&offset=0
 Content-Type: application/json
 
-{
-    "name":"hello",
-    "description":"test",
-    "price":10,
-    "stock":12
-}
+# GET http://localhost:3000/product/1
+# Content-Type: application/json
+
+# DELETE http://localhost:3000/product/2
+# Content-Type: application/json
+
+# PATCH  http://localhost:3000/product/3
+# Content-Type: application/json
+
+# {
+#     "name":"Test",
+#     "description":"test",
+#     "price":10,
+#     "stock":12
+# }

@@ -22,7 +22,7 @@ router.post('/product',
         }
     })
 
-router.patch('/products/:id',
+router.patch('/product/:id',
     async (req: Request, res: Response, next: NextFunction) => {
         try {
             const { error, input } = await RequestValidation(

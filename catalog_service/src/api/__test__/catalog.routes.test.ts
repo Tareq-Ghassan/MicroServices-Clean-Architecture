@@ -80,7 +80,7 @@ describe("Catalog Routes", () => {
             jest.spyOn(catalogService, 'updateProduct')
                 .mockImplementationOnce(() => Promise.resolve(product))
             const response = await request(app)
-                .patch(`/products/${product.id}`)
+                .patch(`/product/${product.id}`)
                 .send(body)
                 .set("Accept", "application/json")
             // console.log("TEST RESPONSE", response)
@@ -97,7 +97,7 @@ describe("Catalog Routes", () => {
                 stock: product.stock
             }
             const response = await request(app)
-                .patch(`/products/${product.id}`)
+                .patch(`/product/${product.id}`)
                 .send({ ...body })
                 .set("Accept", "application/json")
             // console.log("TEST RESPONSE", response)
@@ -114,7 +114,7 @@ describe("Catalog Routes", () => {
                     Promise.reject(new Error("unable to update product"))
                 )
             const response = await request(app)
-                .patch(`/products/${product.id}`)
+                .patch(`/product/${product.id}`)
                 .send(body)
                 .set("Accept", "application/json")
             // console.log("TEST RESPONSE", response)
