@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "jest:init": "jest --init",
+    "jest:init": "npm init jest@latest",
     "dev": "nodemon --exec ts-node src/server.ts",
     "start": "node dist/src/server.js",
     "build": "npm install && tsc -p .",

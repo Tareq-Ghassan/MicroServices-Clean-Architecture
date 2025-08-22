@@ -127,8 +127,8 @@ describe("catalog service", () => {
 
         test("should throw error when product doesn't exist", async () => {
             const product = ProductFactory.build()
-            jest.spyOn(repo, 'delete').mockImplementationOnce(() => Promise.reject(new Error("product doesn't exist")))
-            await expect(service.deleteProduct(product.id!)).rejects.toThrow("product doesn't exist")
+            jest.spyOn(repo, 'delete').mockImplementationOnce(() => Promise.reject(new Error("unable to delete product")))
+            await expect(service.deleteProduct(product.id!)).rejects.toThrow("unable to delete product")
         })
     })
 })
