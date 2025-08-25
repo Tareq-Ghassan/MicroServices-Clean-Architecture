@@ -36,6 +36,23 @@
 **/tmp/
 **/temp/
 
+# Docker local data
+db/db-data/
+
+# Docker overrides
+**/docker-compose.override.yml
+
+# Tooling caches
+**/.eslintcache
+**/.cache/
+**/.turbo/
+
+# Additional env variants
+**/.env.local
+**/.env.development.local
+**/.env.test
+**/.env.production.local
+
 # Optional lock files (uncomment if you want to ignore them)
 **/package-lock.json
 # **/yarn.lock
